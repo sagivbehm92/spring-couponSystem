@@ -1,0 +1,28 @@
+<h4>
+    <b>
+    customer by id!
+    </b>
+  </h4>
+
+<div class="form-group">
+    <label for="customerId">customer id</label>
+    <input #id type="number" class="form-control" id="customerId" placeholder="customer id">
+    <button class="btn btn-primary" (click)="sendCustomerId(id.value)" >Send</button>
+</div>
+
+<table *ngIf="data[0]!=null" class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Password</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of data">
+        <td scope="row">{{customer.id}}</td>
+        <td scope="row">{{customer.name}}</td>
+        <td scope="row">{{customer.password}}</td>
+      </tr>
+    </tbody>
+  </table>

@@ -1,0 +1,135 @@
+<div><label for="price">select by price</label>
+  <input [(ngModel)]="price" name="price" type="range" [min]="minPrice" [max]="maxPrice" value="500" (change)="setCouponByPrice()">
+  {{price}}
+  <h4>
+    <b>
+      my coupons
+    </b>
+  </h4>
+
+
+  <table *ngIf="(data[0]!=null)" class="table">
+    <thead>
+      <tr>
+        <th scope="col">
+          #
+        </th>
+        <th scope="col">
+          ID
+        </th>
+        <th scope="col">
+          TITLE
+        </th>
+        <th scope="col">
+          PRICE
+        </th>
+        <th scope="col">
+          START_DATE
+        </th>
+        <th scope="col">
+          END_DATE
+        </th>
+        <th scope="col">
+          AMOUNT
+        </th>
+        <th scope="col">
+          TYPE
+        </th>
+        <th scope="col">
+          MESSAGE
+        </th>
+        <th scope="col">
+          IMAGE
+        </th>
+        <th scope="col">
+
+        </th>
+      </tr>
+    </thead>
+    <tr *ngFor="let cou of coupons ; let i = index">
+      <td>{{i+1}}</td>
+      <td>{{cou.id}}</td>
+      <td>{{cou.title}}</td>
+      <td>{{cou.price | currency:'ILS'}}</td>
+      <td>{{cou.startDate | date}}</td>
+      <td>{{cou.endDate | date}}</td>
+      <td>{{cou.amount}}</td>
+      <td>{{cou.type}}</td>
+      <td>{{cou.message}}</td>
+      <td>
+        <img [src]="cou.image">
+      </td>
+      <td>
+        <button (click)="daleteCoupon(cou.id)" class="btn btn-default">Delete</button>
+      </td>
+      <td>
+        <button (click)="updateCoupon(cou)" class="btn btn-default">Update</button>
+      </td>
+    </tr>
+  </table>
+  <ngx-smart-modal [customClass]="'large-modal'" #myModal identifier="myModal">
+    <div *ngIf="isUpdateCoupon">
+      <h1>Update coupon</h1>
+      {{myModal.getData() | json}}
+      <form>
+        <div class="form-row">
+          <label for="couponId" class="col-sm-2 col-form-label">id </label>
+          <div class="col-sm-3">
+            <input #couponId type="number" class="form-control" id="couponId" [disabled]="true" value="{{ myModal.getData().id }}">
+          </div>
+
+          <label for="titel" class="col-sm-2 col-form-label">titel</label>
+          <div class="col-sm-3">
+            <input #titel type="text" class="form-control" id="titel" [disabled]="true" value="{{ myModal.getData().title }}">
+          </div>
+        </div>
+        <br>
+        <div class="form-row"><br>
+          <label for="startDate" class="col-sm-2 col-form-label">startDate</label>
+          <div class="col-sm-3">
+            <input #startDate type="date" class="form-control" id="startDate" [disabled]="true" value="{{ myModal.getData().startDate | date : 'yyyy-MM-dd' }}">
+          </div> 
+          <label for="endDate" class="col-sm-2 col-form-label">endDate</label>
+          <div class="col-sm-3">
+            <input #endDate type="date" class="form-control" id="endDate" value="{{ myModal.getData().endDate | date : 'yyyy-MM-dd' }}">
+          </div>
+
+        </div><br>
+        <div class="form-row"><br>
+          <label for="amount" class="col-sm-2 col-form-label">amount</label>
+          <div class="col-sm-3">
+            <input #amount type="number" class="form-control" id="amount" [disabled]="true" value="{{myModal.getData().amount}}">
+          </div>
+          <label for="price" class="col-sm-2 col-form-label">price</label>
+          <div class="col-sm-3">
+            <input #price type="number" class="form-control" id="price" placeholder="{{ myModal.getData().price}}">
+          </div>
+
+        </div><br>
+        <div class="form-row"><br>
+          <label for="message" class="col-sm-2 col-form-label">message</label>
+          <div class="col-sm-3">
+            <input #message type="text" class="form-control" id="message" [disabled]="true" value="{{ myModal.getData().message}}">
+          </div>
+          <label for="image" class="col-sm-2 col-form-label">image</label>
+          <div class="col-sm-3">
+            <input #image type="text" class="form-control" id="image" [disabled]="true" value="{{ myModal.getData().image }}">
+          </div>
+        </div><br>
+        <div class="form-row"><br>
+          <label for="couponType" class="col-sm-2 col-form-label">couponType</label>
+          <div class="col-sm-3">
+            <input #couponType type="text" class="form-control" id="couponType" [disabled]="true" value="{{ myModal.getData().type }}">
+          </div>
+
+        </div><br>
+        <br>
+        <div style=" height: 90px;  display: flex;  align-items: center; justify-content: space-evenly;">
+          <button style=" height: 50px;  width: 120px;" class="btn btn-default" (click)="myModal.close()">Close</button>
+          <button style="    height: 50px; width: 120px;" (click)="sendUpdate(couponId.value , titel.value , startDate.value , endDate.value , amount.value , price.value  , message.value , image.value  , couponType.value )"
+            class="btn btn-primary btn-lg active" role="button">Send</button>
+        </div>
+      </form>
+
+    </div>
+  </ngx-smart-modal>

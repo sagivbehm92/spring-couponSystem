@@ -1,0 +1,94 @@
+<h4><b>my coupon by {{customerService.actionType}}</b></h4>
+
+<div>
+  <span [ngSwitch]="customerService.actionType">
+    <p *ngSwitchCase="'price'">
+      <label for="price">price</label>
+      <input #price id="price" type="number" class="input-group-text">
+      <button (click)="customerCouponsByPrice(price.value)" class="btn btn-default">send</button>
+    </p>
+
+    <p *ngSwitchCase="'id'">
+      <label for="id">Coupon id</label>
+      <input #id id="id" type="number" class="input-group-text">
+      <button (click)=" getCouponById(id.value)" class="btn btn-default">send</button>
+
+    </p>
+
+    <p *ngSwitchCase="'type'">
+      <label for="Type">couponType</label>
+      <select #type name="Type" id="Type">
+        <option value="RESTURANS">RESTURANS</option>
+        <option value="ELECTRICITY">ELECTRICITY</option>
+        <option value="FOOD">FOOD</option>
+        <option value="HEALTH">HEALTH</option>
+        <option value="SPORTS">SPORTS</option>
+        <option value="COMPING">COMPING</option>
+        <option value="TRAVELLING">TRAVELLING</option>
+      </select>
+      <button (click)="customerCouponsByType(type.value)" class="btn btn-default">send</button>
+    </p>
+
+    <!-- <p *ngSwitchDefault>
+    
+  </p> -->
+  </span>
+</div>
+
+<table *ngIf="(data[0]!=null)" class="table">
+  <thead>
+    <tr>
+      <th>
+        #
+      </th>
+      <th>
+        ID
+      </th>
+      <th>
+        TITLE
+      </th>
+      <th>
+        PRICE
+      </th>
+      <th>
+        START_DATE
+      </th>
+      <th>
+        END_DATE
+      </th>
+      <th *ngIf="customerCoupon">
+        AMOUNT
+      </th>
+      <th>
+        TYPE
+      </th>
+      <th>
+        MESSAGE
+      </th>
+      <th>
+        IMAGE
+      </th>
+      <th>
+
+      </th>
+    </tr>
+  </thead>
+  <tr *ngFor="let cou of data ; let i = index">
+
+    <td scope="row">{{i+1}}</td>
+    <td>{{cou.id}}</td>
+    <td>{{cou.title}}</td>
+    <td>{{cou.price | currency:'ILS'}}</td>
+    <td>{{cou.startDate | date}}</td>
+    <td>{{cou.endDate | date}}</td>
+    <td *ngIf="customerCoupon">{{cou.amount}}</td>
+    <td>{{cou.type}}</td>
+    <td>{{cou.message}}</td>
+    <td>
+      <img [src]="cou.image">
+    </td>
+    <td *ngIf="customerCoupon">
+      <button (click)="purchaseCoupon(cou.id)" class="btn btn-default">Buy</button>
+    </td>
+  </tr>
+</table>

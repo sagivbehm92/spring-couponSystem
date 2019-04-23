@@ -1,0 +1,90 @@
+<h4>
+    <b>
+  companies
+  </b>
+</h4>
+<div class="fix-table">
+<table *ngIf="(data[0]!=null)" class="table">
+  <thead>
+    <tr>
+      <th scope="col">
+        #
+      </th>
+      <th scope="col">
+        ID
+      </th>
+      <th scope="col">
+        NAME
+      </th>
+      <th scope="col">
+        PASSWROD
+      </th>
+      <th scope="col">
+        EMAIL
+      </th>
+      <th>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let d of data ; let i = index">
+
+      <td scope="row">{{i+1}}</td>
+      <td>{{d.id}}</td>
+      <td>{{d.name}}</td>
+      <td>{{d.password}}</td>
+      <td>{{d.email}}</td>
+      <td>
+        <button (click)="deleteCompany(d.id)" class="btn btn-default">Delete</button>
+      </td>
+      <td>
+        <button (click)="updateCompany(d)" class="btn btn-default">Update</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<ngx-smart-modal [customClass]="'large-modal'" #myModal identifier="myModal">
+  <div *ngIf="isUpdateCompany">
+    <h1>Update company</h1>
+   
+    <form>
+      <div class="center-group">
+      <div class="form-group">
+        <label for="companyId" class="col-sm-2 col-form-label">id </label>
+        <div class="col-sm-5">
+          <input #companyId type="number" class="form-control" id="companyId" [disabled]="true" value="{{ myModal.getData().id }}">
+        </div>
+      </div>
+      <br>
+      <div class="form-group"><br>
+        <label for="name" class="col-sm-2 col-form-label">name</label>
+        <div class="col-sm-5">
+          <input #name type="text" class="form-control" id="name" [disabled]="true" value="{{ myModal.getData().name }}">
+        </div>
+      </div>
+     
+      <div class="form-group"><br>
+        <label for="password" class="col-sm-2 col-form-label">password</label>
+        <div class="col-sm-5">
+          <input #password type="password" class="form-control" id="password" value="{{ myModal.getData().password}}">
+        </div>
+      </div>
+      <div class="form-group"><br>
+        <label for="email" class="col-sm-2 col-form-label">email</label>
+        <div class="col-sm-5">
+          <input #email type="email" class="form-control" id="email" value="{{ myModal.getData().email }}">
+        </div>
+      </div>
+      <!-- and of center-group-->
+          </div>
+      
+      <div style=" height: 90px;  display: flex;  align-items: center; justify-content: space-evenly;">
+        <button style=" height: 50px;  width: 120px;" class="btn btn-default" (click)="myModal.close()">Close</button>
+        <button style="    height: 50px; width: 120px;" (click)="sendUpdate(companyId.value , name.value , password.value , email.value )"
+          class="btn btn-primary btn-lg active" role="button">Send</button>
+      </div>
+    </form>
+  </div>
+</ngx-smart-modal>

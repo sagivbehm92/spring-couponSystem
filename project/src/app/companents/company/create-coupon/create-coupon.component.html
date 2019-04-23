@@ -1,0 +1,102 @@
+<h4>
+  <b>
+    create-coupon
+  </b>
+</h4>
+
+
+
+<form #createCouponForm="ngForm">
+  
+  <div class="form-row">
+    <label for="Id" class="col-sm-2 col-form-label">Coupon Id</label>
+    <div class="col-sm-3">
+        <input  type="text" class="form-control" disabled placeholder="We supply you the id ">
+    </div>
+
+
+    <label for="title" class="col-sm-2 col-form-label">title</label>
+    <div class="col-sm-3">
+      <input #title="ngModel" name="title" [(ngModel)]="coupon.title" required minlength="3" type="text" class="form-control"
+        placeholder="title">
+      <span *ngIf="title.invalid && title.touched ">the title is required</span>
+    </div>
+  </div>
+  <br>
+
+  <div class="form-row"><br>
+    <label class="col-sm-2 col-form-label">startDate</label>
+    <div class="col-sm-3">
+      <input #startDate="ngModel" required [(ngModel)]="coupon.startDate" name="startDate1" type="date" class="form-control"
+        placeholder="startDate">
+      <span *ngIf="startDate.invalid && startDate.touched ">the startDate is required</span>
+    </div>
+
+    <label for="endDate" class="col-sm-2 col-form-label">endDate</label>
+    <div class="col-sm-3">
+      <input #endDate="ngModel" [(ngModel)]="coupon.endDate" type="date" required class="form-control" name="endDate"
+        placeholder="endDate">
+      <span *ngIf="endDate.invalid && endDate.touched ">the endDate is required</span>
+    </div>
+
+  </div><br>
+  <div class="form-row"><br>
+    <label for="amount" class="col-sm-2 col-form-label">amount</label>
+    <div class="col-sm-3">
+      <input #amount="ngModel" name="amount" required [(ngModel)]="coupon.amount" type="number" class="form-control" id="amount"
+        placeholder="amount">
+      <span *ngIf="amount.invalid && amount.touched ">amount is required</span>
+    </div>
+
+
+    <label for="price" class="col-sm-2 col-form-label">price</label>
+    <div class="col-sm-3">
+      <input #price="ngModel" required name="price" [(ngModel)]="coupon.price" type="number" class="form-control"
+        placeholder="price">
+      <span *ngIf="price.invalid && price.touched ">the price is required</span>
+    </div>
+
+  </div><br>
+  <div class="form-row"><br>
+    <label for="message" class="col-sm-2 col-form-label">message</label>
+    <div class="col-sm-3">
+      <input #message="ngModel" name="message" required minlength="3" [(ngModel)]="coupon.message" type="text" class="form-control"
+        id="message" placeholder="message">
+      <span *ngIf="message.invalid && message.touched ">the message is required</span>
+    </div>
+
+
+    <label for="image" class="col-sm-2 col-form-label">image</label>
+    <div class="col-sm-3">
+      <input #image="ngModel" name="image" required min="3" [(ngModel)]="coupon.image" type="text" class="form-control"
+        id="image" placeholder="Url-image">
+      <span *ngIf="image.invalid && image.touched ">the image is required</span>
+    </div>
+
+
+  </div><br>
+  <div class="form-row"><br>
+    <label for="couponType" class="col-sm-2 col-form-label">couponType</label>
+    <div class="col-sm-3">
+      <select #couponType="ngModel" required [(ngModel)]="coupon.type" type="number" class="form-control" name="couponType"
+        placeholder="couponType">
+        <option value="RESTURANS">RESTURANS</option>
+        <option value="ELECTRICITY">ELECTRICITY</option>
+        <option value="FOOD">FOOD</option>
+        <option value="HEALTH">HEALTH</option>
+        <option value="SPORTS">SPORTS</option>
+        <option value="COMPING">COMPING</option>
+        <option value="TRAVELLING">TRAVELLING</option>
+      </select>
+      <span *ngIf="couponType.invalid && couponType.touched ">the couponType is required</span>
+    </div>
+
+    <label for="idCompany" class="col-sm-2 col-form-label">idCompany</label>
+    <div class="col-sm-3">
+      <input #idCompany type="number" class="form-control" id="idCompany" disabled [value]="dataUserService.userId">
+    </div>
+
+  </div><br>
+  <br>
+  <input type="submit" [disabled]="createCouponForm.invalid" (click)="createCoupon()" class="btn btn-primary btn-lg active" value="Send" role="button">
+</form>

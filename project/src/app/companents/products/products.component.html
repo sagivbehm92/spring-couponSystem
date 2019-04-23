@@ -1,0 +1,62 @@
+<div class="products-component fixTable">
+  <h2> Products </h2>
+
+  <nav class="navbar navbar-light bg-light">
+    <form class="form-inline">
+      <button class="btn btn-primary" (click)="reset()">Reset</button>
+      <input #idNamber class="form-control mr-sm-2" type="number" placeholder="Search By Id" aria-label="Search">
+      <button class="btn btn-primary" (click)="SearchById(idNamber.value)">Search</button>
+    </form>
+  </nav>
+
+      <div> 
+    <table class="table">
+      <thead>
+        <tr>
+          <th>
+            #
+          </th>
+          <th>
+            TITLE
+          </th>
+          <th>
+            PRICE
+          </th>
+          <th>
+            START DATE
+          </th>
+          <th>
+            END DATE
+          </th>
+          <th>
+            AMOUNT
+          </th>
+          <th>
+            TYPE
+          </th>
+          <th>
+            MESSAGE
+          </th>
+          <th>
+            IMAGE
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let coupon of searchCoupons ; let i = index ">
+          <td>{{i+1}}</td>
+          <td>{{coupon.title}}</td>
+          <td>{{coupon.price | currency:'ILS'}}</td>
+          <td>{{coupon.startDate | date}}</td>
+          <td>{{coupon.endDate | date}}</td>
+          <td>{{coupon.amount}}</td>
+          <td>{{coupon.type}}</td>
+          <td>{{coupon.message}}</td>
+          <td>
+            <img [src]="coupon.image">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+.div-contner{
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+}
+
+
+img{
+    width: 50px;
+}
+
+table{
+    thead{
+        tr{
+            th{
+                text-align: center;
+            }
+        }
+    }
+}

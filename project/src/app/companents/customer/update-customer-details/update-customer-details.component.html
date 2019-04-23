@@ -1,0 +1,36 @@
+<h3>
+  update password !
+</h3>
+
+<div>
+  <form #updateForm="ngForm">
+    <div class="form-group row">
+      <label for="staticEmail" class="col-sm-2 col-form-label">UserName</label>
+      <div class="col-sm-6">
+        <input type="text" disabled class="form-control" id="staticEmail" [value]="dataUserService.getUserName()">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPassword" class="col-sm-2 col-form-label">Id</label>
+      <div class="col-sm-6">
+        <input #id type="number" disabled class="form-control" id="inputPassword" [value]="dataUserService.getUserId()">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="Password" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-6">
+        <input #password="ngModel" [(ngModel)]="passwordBeans.password" name="password" required minlength="5" type="password" class="form-control" placeholder="Password">
+        <span *ngIf="password.invalid && password.touched ">the password to short</span>   
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="NewPassword" class="col-sm-2 col-form-label">New Password</label>
+      <div class="col-sm-6">
+        <input #newPassword="ngModel" name="passwordBeans" [(ngModel)]="passwordBeans.newPassword" required minlength="5" type="password" class="form-control" id="NewPassword" placeholder="NewPassword">
+        <span *ngIf="newPassword.invalid && newPassword.touched ">the new Password to short</span>   
+      </div>
+    </div>
+    <button [disabled]="updateForm.invalid" (click)="customerUpdate()" class="btn btn-primary btn-lg active"
+      role="button">Send</button>
+  </form>
+</div>

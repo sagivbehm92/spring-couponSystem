@@ -1,0 +1,42 @@
+<h4>
+    <b>
+  add company
+  </b>
+</h4>
+
+
+<form #addCompanyForm="ngForm">
+    <div class="form-group row">
+      <label for="id" class="col-sm-2 col-form-label">Id</label>
+      <div class="col-sm-5">
+        <input   type="text" class="form-control" disabled placeholder="We supply you the id ">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="name" class="col-sm-2 col-form-label">Name</label>
+      <div class="col-sm-5">
+        <input #name="ngModel" required type="text" minlength="5"  class="form-control" name="name" [(ngModel)]="company.name" placeholder="Company Name">
+      </div>
+      <span *ngIf="name.invalid && name.touched ">the name to short</span>
+    </div>
+
+    <div class="form-group row">
+      <label for="password" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-5">
+        <input #password="ngModel" [(ngModel)]="company.password" name="password" required minlength="5" type="password" class="form-control" placeholder="Password">
+      </div>
+      <span *ngIf="password.invalid && password.touched ">the password to short</span>
+    </div>
+
+    <div class="form-group row">
+      <label for="Email" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-5">
+        <input #email="ngModel" name="email" email [(ngModel)]="company.email" type="email" class="form-control" id="Email" placeholder="email@example.com">
+      </div>
+      <span *ngIf="email.touched && email.invalid">the email not valid</span>
+    </div>
+
+    <button  [disabled]="addCompanyForm.invalid" (click)="addCompany()" class="btn btn-primary" type="submit">Send</button>
+    
+  </form>

@@ -1,0 +1,62 @@
+<div><label for="price">select by price</label>
+  <input  [(ngModel)]="price" name="price" type="range" [min]="minPrice" [max]="maxPrice" value="500" (change)="setCouponByPrice()">
+  {{price}}
+</div>
+<h4><b>coupon for sale</b></h4>
+<table *ngIf="(data[0]!=null)" class="table">
+  <thead>
+    <tr>
+      <th scope="col">
+        #
+      </th>
+      <th scope="col">
+        ID
+      </th>
+      <th scope="col">
+        TITLE
+      </th>
+      <th scope="col">
+        PRICE
+      </th>
+      <th scope="col">
+        START_DATE
+      </th>
+      <th scope="col">
+        END_DATE
+      </th>
+      <th scope="col">
+        AMOUNT
+      </th>
+      <th scope="col">
+        TYPE
+      </th>
+      <th scope="col">
+        MESSAGE
+      </th>
+      <th scope="col">
+        IMAGE
+      </th>
+      <th scope="col">
+
+      </th>
+    </tr>
+  </thead>
+  <tr *ngFor="let cou of coupons ; let i = index">
+
+    <td scope="row">{{i+1}}</td>
+    <td>{{cou.id}}</td>
+    <td>{{cou.title}}</td>
+    <td>{{cou.price |  currency:'ILS'}}</td>
+    <td>{{cou.startDate | date}}</td>
+    <td>{{cou.endDate | date}}</td>
+    <td >{{cou.amount}}</td>
+    <td>{{cou.type}}</td>
+    <td>{{cou.message}}</td>
+    <td>
+      <img [src]="cou.image">
+    </td>
+    <td >
+      <button (click)="purchaseCoupon(cou.id)" class="btn btn-default">Buy</button>
+    </td>
+  </tr>
+</table>

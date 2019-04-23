@@ -1,0 +1,29 @@
+<h4>
+    <b>
+  company by id!
+  </b>
+</h4>
+<div class="form-group">
+    <label for="idCompany">company id</label>
+    <input #id type="number" class="form-control" id="idCompany" placeholder="company id">
+    <button class="btn btn-primary" (click)="sendCompanyId(id.value)" >Send</button>
+</div>
+
+<table *ngIf="data[0]!=null" class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Password</th>
+        <th scope="col">Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let company of data">
+        <td scope="row">{{company.id}}</td>
+        <td scope="row">{{company.name}}</td>
+        <td scope="row">{{company.password}}</td>
+        <td scope="row">{{company.email}}</td>
+      </tr>
+    </tbody>
+  </table>

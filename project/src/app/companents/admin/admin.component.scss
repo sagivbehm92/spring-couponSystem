@@ -1,0 +1,17 @@
+.app-admin{
+    .container-app{
+        display: flex;
+        
+        .content{
+          flex:80%;
+          margin-left: 30px;
+          height: calc(100vh - 72px);
+        }
+    }
+
+    .the-chosen-one {
+        color: #383d03;
+        font-weight: bold;
+        font-family: Arial;
+    }
+}

@@ -1,0 +1,15 @@
+form{
+      margin: auto;
+}
+
+span {
+      margin: 2px;
+      text-align: left;
+      color: red;
+      position: absolute;
+  }
+  
+  .ng-invalid.ng-touched:not(form) {
+      background-color: pink;
+      border: 2px solid red;
+  }

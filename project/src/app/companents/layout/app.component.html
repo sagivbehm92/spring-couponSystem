@@ -1,0 +1,113 @@
+<section>
+    <header>
+        <div class="title">
+            {{title}}
+        </div>
+        <h4 *ngIf="dataUserService.getUserName()">
+            {{dataUserService.getUserName()}}
+        </h4>
+        <div class="actions">
+
+            <ng-template *ngIf="dataUserService.getIsLogin();then logout ; else login"></ng-template>
+            <ng-template #login>
+                <span>
+                    <i class="material-icons">input</i>
+                    <a routerLink="/login">Login</a>
+                </span>
+            </ng-template>
+            <ng-template #logout>
+                <span>
+                    <app-logout></app-logout>
+                </span>
+            </ng-template>
+        </div>
+    </header>
+
+    <main>
+        <ng-container *ngIf="dataUserService.getIsHome()">
+            <nav *ngIf="dataUserService.type && dataUserService.type!='' " class="navigation">
+                <ul class="list-group">
+                    <ng-container *ngIf="dataUserService.type=='COMPANY'">
+
+                        <li routerLink="/company/companyCoupon" routerLinkActive="the-chosen-one">
+                            Get my coupon
+                        </li>
+                        <li routerLink="/company/companyCouponsByActionType" [queryParams]="{ actionType:'price' }"
+                            routerLinkActive="the-chosen-one">
+                            coupon by price
+                        </li>
+                        <li routerLink="/company/companyCouponsByActionType" [queryParams]="{ actionType:'date' }"
+                            routerLinkActive="the-chosen-one">
+                            Coupon by date
+                        </li>
+                        <li routerLink="/company/companyCouponsByActionType" [queryParams]="{ actionType:'type' }"
+                            routerLinkActive="the-chosen-one">
+                            Coupon by type
+                        </li>
+                        <li routerLink="/company/createCoupon" routerLinkActive="the-chosen-one">
+                            Create coupon
+                        </li>
+                        <li routerLink="/company/updatePassword" routerLinkActive="the-chosen-one">
+                            Update my password
+                        </li>
+                        <li routerLink="/company/updateEmail" routerLinkActive="the-chosen-one">
+                            Update my email
+                        </li>
+                    </ng-container>
+
+                    <ng-container *ngIf="dataUserService.type=='CUSTOMER'">
+
+                        <li routerLink="/customer/notPurchase" routerLinkActive="the-chosen-one">
+                            Purchase coupon
+                        </li>
+                        <li routerLink="/customer/customerCoupon" routerLinkActive="the-chosen-one">
+                            Get my coupon
+                        </li>
+                        <li routerLink="/customer/customerCouponsByActionType" [queryParams]="{ actionType:'price' }"
+                            routerLinkActive="the-chosen-one">
+                            Coupon cust by price
+                        </li>
+                        <li routerLink="/customer/customerCouponsByActionType" [queryParams]="{actionType:'type'}"
+                            routerLinkActive="the-chosen-one">
+                            Coupon by type
+                        </li>
+                        <li routerLink="/customer/customerCouponsByActionType" [queryParams]="{actionType:'id'}"
+                            routerLinkActive="the-chosen-one">
+                            Get coupon by id
+                        </li>
+                        <li routerLink="/customer/updateCustomer" routerLinkActive="the-chosen-one">
+                            Update coustomer
+                        </li>
+                    </ng-container>
+
+                    <ng-container *ngIf="dataUserService.type=='ADMIN'">
+                        <li routerLink="/admin/addCompany" routerLinkActive="the-chosen-one">
+                            Add company
+                        </li>
+                        <li routerLink="/admin/getAllCompanies" routerLinkActive="the-chosen-one">
+                            Get companies
+                        </li>
+                        <li routerLink="/admin/getCompanyById" routerLinkActive="the-chosen-one">
+                            Get company
+                        </li>
+                        <li routerLink="/admin/addCustomer" routerLinkActive="the-chosen-one">
+                            Add customer
+                        </li>
+                        <li routerLink="/admin/getAllCustomer" routerLinkActive="the-chosen-one">
+                            Get customers
+                        </li>
+                        <li routerLink="/admin/getCustomerById" routerLinkActive="the-chosen-one">
+                            Get customer
+                        </li>
+                    </ng-container>
+                </ul>
+            </nav>
+        </ng-container>
+        <div class="router-content">
+            <router-outlet></router-outlet>
+        </div>
+    </main>
+    <footer>
+        <p> &copy;</p>
+    </footer>
+</section>

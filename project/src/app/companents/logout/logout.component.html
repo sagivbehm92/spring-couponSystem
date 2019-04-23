@@ -1,0 +1,13 @@
+<div class="logout">
+    <!-- <i class="material-icons">input</i> -->
+    <ng-template *ngIf="dateUserService.getIsHome();then products ; else home"> </ng-template>
+    <ng-template #home>
+        <button (click)="moveToHome()" class="btn btn-default">Home</button>
+    </ng-template>
+    <ng-template #products>
+        <button (click)="moveToProducts()" class="btn btn-default">Products</button>
+    </ng-template>
+
+    <!--פה אני יעשה איזה סלאקט שיציג את הפרטי הלקוח+אפשריות עידכון לפי כול לקוח -->
+    <button (click)="logout()" class="btn btn-default">logout</button>
+</div>

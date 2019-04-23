@@ -1,0 +1,19 @@
+span {
+
+    color: red;
+   
+    position:absolute;
+    left: 20px;
+   
+}
+
+.ng-invalid.ng-touched:not(form) {
+    background-color: pink;
+    border: 2px solid red;
+
+}
+
+.form-row{
+    height:fit-content;
+    margin-bottom:15px;
+}

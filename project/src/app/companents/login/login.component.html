@@ -1,0 +1,35 @@
+<div class="app-login">
+  <h2><b> {{titel}} </b></h2>
+
+  <form #loginForm="ngForm">
+    <span *ngIf="name.invalid && name.touched ">the name too short</span>
+    <div class="container-row">
+      <label for="">User name</label>
+      <input type="text" #name="ngModel" required minlength="5" maxlength="50" name="name" [(ngModel)]="userLogin.name"
+        placeholder="min 5 Characters">
+    </div>
+
+    <span *ngIf="password.invalid && password.touched ">the password too short</span>
+    <div class="container-row">
+      <label for="">User password</label>
+      <input type="password" required minlength="4" maxlength="50" #password="ngModel" name="password" [(ngModel)]="userLogin.password"
+        placeholder="min 4 Characters">
+    </div>
+
+    <span *ngIf="type.invalid && type.touched ">you must choose a type</span>
+    <div class="container-row">
+      <label>
+        Type user
+      </label>
+      <select #type="ngModel" name="type" required [(ngModel)]="userLogin.type">
+        <option value="CUSTOMER">Customer</option>
+        <option value="COMPANY">Company</option>
+        <option value="ADMIN">Admin</option>
+      </select>
+    </div>
+    <p><b>Remember Me? </b> <br>
+      <label> yes </label> <input #checkbox="ngModel" type="checkbox" [(ngModel)]="userLogin.rememberMe" name="checkbox"> <br>
+    </p>
+    <button [disabled]="loginForm.invalid" class="btn btn-primary" (click)="sendLogin()">Apply</button>
+    <div class="content"></div>
+  </form>

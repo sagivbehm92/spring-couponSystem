@@ -1,0 +1,15 @@
+.fix-table{
+    overflow-y: auto !important;
+    height: 100% !important;
+    position: relative !important;
+}
+
+table{
+    thead{
+        tr{
+            th{
+                text-align: center;
+            }
+        }
+    }
+}
